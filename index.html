@@ -255,6 +255,42 @@
       border-radius: 999px;
     }
 
+    .card-actions {
+      margin-top: 20px;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .demo-link {
+      display: inline-block;
+      background: var(--dark);
+      color: white;
+      padding: 10px 14px;
+      border-radius: 12px;
+      font-weight: 800;
+      font-size: 0.9rem;
+    }
+
+    .demo-link:hover {
+      background: var(--mint-dark);
+    }
+
+    .details-link {
+      display: inline-block;
+      border: 1px solid var(--border);
+      color: var(--dark);
+      padding: 10px 14px;
+      border-radius: 12px;
+      font-weight: 800;
+      font-size: 0.9rem;
+    }
+
+    .details-link:hover {
+      border-color: var(--mint-dark);
+      color: var(--mint-dark);
+    }
+
     .steps {
       background: var(--light);
       border-top: 1px solid var(--border);
@@ -409,12 +445,23 @@
         <div class="grid">
           <div class="card">
             <div class="template-preview"></div>
+
             <h3>Contractor Website</h3>
-            <p>A modern site for contractors, remodelers, roofers, and local service pros.</p>
+
+            <p>
+              A modern site for contractors, remodelers, roofers, landscapers,
+              painters, electricians, plumbers, and local service pros.
+            </p>
+
             <div class="tag-row">
               <span class="tag">Quote Form</span>
               <span class="tag">Gallery</span>
               <span class="tag">Services</span>
+            </div>
+
+            <div class="card-actions">
+              <a href="/templates/contractor/" class="demo-link">View Demo</a>
+              <a href="#contact" class="details-link">Request This Site</a>
             </div>
           </div>
 
