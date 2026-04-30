@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Local Business Website Template | MintLaunchKit</title>
+
+  <style>
+    :root {
+      --mint: #2ed3a2;
+      --mint-dark: #18a97d;
+      --dark: #111827;
+      --gray: #6b7280;
+      --light: #f9fafb;
+      --border: #e5e7eb;
+      --white: #ffffff;
+      --purple: #7c3aed;
+      --purple-dark: #5b21b6;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--white);
+      color: var(--dark);
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(1120px, 92%);
+      margin: 0 auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(255, 255, 255, 0.92);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(12px);
+    }
+
+    .navbar {
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-size: 1.25rem;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+    }
+
+    .logo span {
+      color: var(--purple);
+    }
+
+    nav {
+      display: flex;
+      gap: 26px;
+      font-size: 0.95rem;
+      color: var(--gray);
+    }
+
+    nav a:hover {
+      color: var(--dark);
+    }
+
+    .nav-button {
+      background: var(--dark);
+      color: white;
+      padding: 10px 18px;
+      border-radius: 999px;
+      font-weight: 800;
+      font-size: 0.9rem;
+    }
+
+    .hero {
+      padding: 96px 0 72px;
+      background:
+        radial-gradient(circle at top left, rgba(124, 58, 237, 0.14), transparent 36%),
+        linear-gradient(180deg, #ffffff 0%, #f9fafb 100%);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      align-items: center;
+      gap: 48px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      background: #f5f3ff;
+      color: var(--purple-dark);
+      border: 1px solid #ddd6fe;
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-weight: 800;
+      font-size: 0.9rem;
+      margin-bottom: 22px;
+    }
+
+    h1 {
+      font-size: clamp(2.8rem, 6vw, 5.2rem);
+      line-height: 0.98;
+      letter-spacing: -0.07em;
+      margin-bottom: 22px;
+    }
+
+    .hero p {
+      color: var(--gray);
+      font-size: 1.15rem;
+      max-width: 620px;
+      margin-bottom: 32px;
+    }
+
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .button-primary,
+    .button-secondary {
+      display: inline-block;
+      padding: 14px 22px;
+      border-radius: 14px;
+      font-weight: 800;
+    }
+
+    .button-primary {
+      background: var(--purple);
+      color: white;
+    }
+
+    .button-primary:hover {
+      background: var(--purple-dark);
+    }
+
+    .button-secondary {
+      background: white;
+      border: 1px solid var(--border);
+    }
+
+    .hero-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 30px;
+      padding: 24px;
+      box-shadow: 0 24px 60px rgba(17, 24, 39, 0.1);
+    }
+
+    .business-visual {
+      height: 280px;
+      border-radius: 24px;
+      background:
+        linear-gradient(135deg, rgba(124, 58, 237, 0.22), rgba(46, 211, 162, 0.16)),
+        #e5e7eb;
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 18px;
+    }
+
+    .business-visual::before {
+      content: "";
+      position: absolute;
+      left: 34px;
+      bottom: 42px;
+      width: 220px;
+      height: 140px;
+      background: white;
+      border-radius: 24px 24px 12px 12px;
+      box-shadow: 190px 32px 0 rgba(255, 255, 255, 0.85);
+    }
+
+    .business-visual::after {
+      content: "";
+      position: absolute;
+      left: 70px;
+      top: 46px;
+      width: 64%;
+      height: 16px;
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 999px;
+      box-shadow:
+        0 34px 0 rgba(255, 255, 255, 0.85),
+        0 68px 0 rgba(255, 255, 255, 0.65);
+    }
+
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+
+    .stat {
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 16px;
+      background: var(--light);
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 1.3rem;
+      letter-spacing: -0.04em;
+    }
+
+    .stat span {
+      color: var(--gray);
+      font-size: 0.85rem;
+    }
+
+    .section {
+      padding: 76px 0;
+    }
+
+    .section-light {
+      background: var(--light);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .section-header {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: 32px;
+    }
+
+    .section-header h2 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      letter-spacing: -0.05em;
+      line-height: 1.05;
+    }
+
+    .section-header p {
+      color: var(--gray);
+      max-width: 500px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 22px;
+    }
+
+    .card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 26px;
+      box-shadow: 0 16px 40px rgba(17, 24, 39, 0.05);
+    }
+
+    .icon {
+      width: 46px;
+      height: 46px;
+      border-radius: 16px;
+      display: grid;
+      place-items: center;
+      background: #f5f3ff;
+      color: var(--purple-dark);
+      font-weight: 900;
+      margin-bottom: 18px;
+    }
+
+    .card h3 {
+      font-size: 1.2rem;
+      letter-spacing: -0.03em;
+      margin-bottom: 8px;
+    }
+
+    .card p,
+    .card li {
+      color: var(--gray);
+    }
+
+    ul {
+      list-style: none;
+      display: grid;
+      gap: 12px;
+    }
+
+    li::before {
+      content: "✓";
+      color: var(--purple);
+      font-weight: 900;
+      margin-right: 8px;
+    }
+
+    .location-box {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 30px;
+      padding: 32px;
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 26px;
+      align-items: center;
+      box-shadow: 0 16px 40px rgba(17, 24, 39, 0.05);
+    }
+
+    .map-placeholder {
+      min-height: 300px;
+      border-radius: 24px;
+      background:
+        radial-gradient(circle at 35% 40%, rgba(124, 58, 237, 0.25), transparent 18%),
+        radial-gradient(circle at 65% 62%, rgba(46, 211, 162, 0.26), transparent 22%),
+        linear-gradient(135deg, #f5f3ff, #f9fafb);
+      border: 1px solid var(--border);
+      position: relative;
+    }
+
+    .map-placeholder::after {
+      content: "📍";
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 3rem;
+    }
+
+    .quote-box {
+      background: var(--dark);
+      color: white;
+      border-radius: 32px;
+      padding: 46px;
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 34px;
+      align-items: start;
+    }
+
+    .quote-box h2 {
+      font-size: clamp(2rem, 4vw, 3.1rem);
+      letter-spacing: -0.05em;
+      line-height: 1.05;
+      margin-bottom: 14px;
+    }
+
+    .quote-box p {
+      color: #d1d5db;
+    }
+
+    form {
+      display: grid;
+      gap: 14px;
+    }
+
+    input,
+    textarea,
+    select {
+      width: 100%;
+      border: 1px solid #374151;
+      background: #1f2937;
+      color: white;
+      border-radius: 14px;
+      padding: 14px 16px;
+      font: inherit;
+    }
+
+    input::placeholder,
+    textarea::placeholder {
+      color: #9ca3af;
+    }
+
+    textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    .form-button {
+      border: 0;
+      background: var(--purple);
+      color: white;
+      padding: 14px 18px;
+      border-radius: 14px;
+      font-weight: 900;
+      cursor: pointer;
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 32px 0;
+      color: var(--gray);
+    }
+
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 900px) {
+      nav {
+        display: none;
+      }
+
+      .hero-grid,
+      .grid-3,
+      .grid-2,
+      .location-box,
+      .quote-box {
+        grid-template-columns: 1fr;
+      }
+
+      .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .hero-stats {
+        grid-template-columns: 1fr;
+      }
+
+      .quote-box {
+        padding: 32px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="container navbar">
+      <a class="logo" href="/">Local<span>Studio</span></a>
+
+      <nav>
+        <a href="#services">Services</a>
+        <a href="#location">Location</a>
+        <a href="#why-us">Why Us</a>
+        <a href="#booking">Book Now</a>
+      </nav>
+
+      <a class="nav-button" href="#booking">Book Appointment</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow">Local Business • Booking • Contact</div>
+
+          <h1>A clean website for local businesses that need customers.</h1>
+
+          <p>
+            A modern local business website template for barbers, restaurants,
+            gyms, cleaners, salons, coaches, shops, and service-based brands.
+          </p>
+
+          <div class="buttons">
+            <a href="#booking" class="button-primary">Book an Appointment</a>
+            <a href="#services" class="button-secondary">View Services</a>
+          </div>
+        </div>
+
+        <div class="hero-card">
+          <div class="business-visual"></div>
+
+          <div class="hero-stats">
+            <div class="stat">
+              <strong>4.9★</strong>
+              <span>Customer Rating</span>
+            </div>
+            <div class="stat">
+              <strong>500+</strong>
+              <span>Happy Customers</span>
+            </div>
+            <div class="stat">
+              <strong>Mon-Sat</strong>
+              <span>Open Weekly</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="services" class="section">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <h2>Services and offers</h2>
+          </div>
+          <p>
+            Show your main services, packages, menu items, or offers in a clean
+            layout that is easy for customers to understand.
+          </p>
+        </div>
+
+        <div class="grid-3">
+          <div class="card">
+            <div class="icon">01</div>
+            <h3>Signature Service</h3>
+            <p>Use this card for your most popular service, package, menu item, or offer.</p>
+          </div>
+
+          <div class="card">
+            <div class="icon">02</div>
+            <h3>Premium Package</h3>
+            <p>Highlight a higher-value option for customers who want the best experience.</p>
+          </div>
+
+          <div class="card">
+            <div class="icon">03</div>
+            <h3>Quick Booking</h3>
+            <p>Add appointment booking, contact forms, order requests, or consultation calls.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="location" class="section section-light">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <h2>Hours and location</h2>
+          </div>
+          <p>
+            Make it easy for customers to find your business, check your hours,
+            and contact you from their phone.
+          </p>
+        </div>
+
+        <div class="location-box">
+          <div>
+            <h3>Visit our local shop</h3>
+            <p>
+              123 Main Street<br />
+              Your City, ST 12345
+            </p>
+            <br />
+            <ul>
+              <li>Monday-Friday: 9:00 AM - 6:00 PM</li>
+              <li>Saturday: 10:00 AM - 4:00 PM</li>
+              <li>Sunday: Closed</li>
+              <li>Phone, email, and map section ready</li>
+            </ul>
+          </div>
+
+          <div class="map-placeholder"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="why-us" class="section">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <h2>Why customers choose us</h2>
+          </div>
+          <p>
+            A strong local business site should quickly show trust, services,
+            location, reviews, and a simple way to book or contact.
+          </p>
+        </div>
+
+        <div class="grid-2">
+          <div class="card">
+            <h3>What’s included</h3>
+            <ul>
+              <li>Mobile-friendly local business layout</li>
+              <li>Services or menu section</li>
+              <li>Hours and location section</li>
+              <li>Booking/contact form layout</li>
+              <li>Customer trust and review sections</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h3>Best for</h3>
+            <ul>
+              <li>Barbers and salons</li>
+              <li>Restaurants and food shops</li>
+              <li>Gyms and fitness coaches</li>
+              <li>Cleaners and service businesses</li>
+              <li>Local shops and personal brands</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="booking" class="section">
+      <div class="container">
+        <div class="quote-box">
+          <div>
+            <h2>Book or request more info.</h2>
+            <p>
+              This form is a design preview. Later, MintLaunchKit can connect it
+              to email, booking software, payments, or a customer dashboard.
+            </p>
+          </div>
+
+          <form>
+            <input type="text" placeholder="Full name" />
+            <input type="email" placeholder="Email address" />
+            <input type="tel" placeholder="Phone number" />
+
+            <select>
+              <option>What are you interested in?</option>
+              <option>Book an appointment</option>
+              <option>Ask about pricing</option>
+              <option>Request a service</option>
+              <option>Other</option>
+            </select>
+
+            <textarea placeholder="Tell us what you need"></textarea>
+
+            <button class="form-button" type="button">Submit Request</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-content">
+      <p>© 2026 LocalStudio. Local Business Website Template.</p>
+      <p>Template by MintLaunchKit.</p>
+    </div>
+  </footer>
+</body>
+</html>
