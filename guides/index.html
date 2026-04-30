@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Setup Guides | MintLaunchKit</title>
+
+  <style>
+    :root {
+      --mint: #2ed3a2;
+      --mint-dark: #18a97d;
+      --dark: #111827;
+      --gray: #6b7280;
+      --light: #f9fafb;
+      --border: #e5e7eb;
+      --white: #ffffff;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--white);
+      color: var(--dark);
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(1120px, 92%);
+      margin: 0 auto;
+    }
+
+    header {
+      border-bottom: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.9);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(12px);
+    }
+
+    .navbar {
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-size: 1.35rem;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+    }
+
+    .logo span {
+      color: var(--mint-dark);
+    }
+
+    nav {
+      display: flex;
+      gap: 24px;
+      color: var(--gray);
+      font-size: 0.95rem;
+    }
+
+    nav a:hover {
+      color: var(--dark);
+    }
+
+    .nav-button {
+      background: var(--dark);
+      color: white;
+      padding: 10px 18px;
+      border-radius: 999px;
+      font-weight: 800;
+      font-size: 0.9rem;
+    }
+
+    .hero {
+      padding: 90px 0 70px;
+      background:
+        radial-gradient(circle at top left, rgba(46, 211, 162, 0.16), transparent 32%),
+        linear-gradient(180deg, #ffffff 0%, #f9fafb 100%);
+    }
+
+    .eyebrow {
+      display: inline-block;
+      background: #ecfdf5;
+      color: #047857;
+      border: 1px solid #a7f3d0;
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-weight: 800;
+      font-size: 0.9rem;
+      margin-bottom: 24px;
+    }
+
+    h1 {
+      font-size: clamp(2.8rem, 7vw, 5.4rem);
+      line-height: 0.98;
+      letter-spacing: -0.07em;
+      margin-bottom: 24px;
+      max-width: 860px;
+    }
+
+    .hero p {
+      color: var(--gray);
+      font-size: 1.2rem;
+      max-width: 680px;
+      margin-bottom: 32px;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .button-primary,
+    .button-secondary {
+      display: inline-block;
+      padding: 14px 22px;
+      border-radius: 14px;
+      font-weight: 900;
+    }
+
+    .button-primary {
+      background: var(--mint);
+      color: #052e22;
+    }
+
+    .button-primary:hover {
+      background: var(--mint-dark);
+      color: white;
+    }
+
+    .button-secondary {
+      background: white;
+      border: 1px solid var(--border);
+      color: var(--dark);
+    }
+
+    .section {
+      padding: 76px 0;
+    }
+
+    .section-light {
+      background: var(--light);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .section-header {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: 32px;
+    }
+
+    .section-header h2 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      line-height: 1.05;
+      letter-spacing: -0.05em;
+    }
+
+    .section-header p {
+      color: var(--gray);
+      max-width: 520px;
+    }
+
+    .guide-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    .guide-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 24px;
+      box-shadow: 0 16px 40px rgba(17, 24, 39, 0.05);
+      transition: 0.2s ease;
+    }
+
+    .guide-card:hover {
+      transform: translateY(-3px);
+      border-color: var(--mint);
+    }
+
+    .guide-icon {
+      width: 46px;
+      height: 46px;
+      border-radius: 16px;
+      background: #ecfdf5;
+      color: #047857;
+      display: grid;
+      place-items: center;
+      font-weight: 900;
+      margin-bottom: 16px;
+    }
+
+    .guide-card h3 {
+      font-size: 1.1rem;
+      margin-bottom: 8px;
+      letter-spacing: -0.03em;
+    }
+
+    .guide-card p {
+      color: var(--gray);
+      font-size: 0.95rem;
+    }
+
+    .guide-section {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 30px;
+      padding: 34px;
+      margin-bottom: 24px;
+      box-shadow: 0 16px 40px rgba(17, 24, 39, 0.05);
+    }
+
+    .guide-section h2 {
+      font-size: clamp(1.7rem, 3vw, 2.4rem);
+      letter-spacing: -0.05em;
+      line-height: 1.08;
+      margin-bottom: 14px;
+    }
+
+    .guide-section > p {
+      color: var(--gray);
+      margin-bottom: 24px;
+      max-width: 760px;
+    }
+
+    .steps {
+      display: grid;
+      gap: 14px;
+      counter-reset: step;
+    }
+
+    .step {
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 20px;
+      display: grid;
+      grid-template-columns: 48px 1fr;
+      gap: 16px;
+      align-items: start;
+      background: var(--light);
+    }
+
+    .step-number {
+      width: 40px;
+      height: 40px;
+      border-radius: 14px;
+      background: var(--dark);
+      color: white;
+      display: grid;
+      place-items: center;
+      font-weight: 900;
+    }
+
+    .step h3 {
+      font-size: 1.05rem;
+      margin-bottom: 4px;
+    }
+
+    .step p {
+      color: var(--gray);
+    }
+
+    .note {
+      margin-top: 18px;
+      background: #ecfdf5;
+      border: 1px solid #a7f3d0;
+      color: #065f46;
+      padding: 16px;
+      border-radius: 18px;
+      font-weight: 700;
+    }
+
+    .cta {
+      background: var(--dark);
+      color: white;
+      border-radius: 32px;
+      padding: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .cta h2 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      letter-spacing: -0.05em;
+      line-height: 1.05;
+      margin-bottom: 12px;
+    }
+
+    .cta p {
+      color: #d1d5db;
+      max-width: 620px;
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 32px 0;
+      color: var(--gray);
+    }
+
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 900px) {
+      nav {
+        display: none;
+      }
+
+      .guide-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .section-header,
+      .cta {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .cta {
+        padding: 34px;
+      }
+
+      .step {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="container navbar">
+      <a href="/" class="logo">Mint<span>Launch</span>Kit</a>
+
+      <nav>
+        <a href="/">Home</a>
+        <a href="/#templates">Templates</a>
+        <a href="/#pricing">Pricing</a>
+        <a href="#domain">Domain</a>
+        <a href="#hosting">Hosting</a>
+      </nav>
+
+      <a 
+        class="nav-button" 
+        href="https://tally.so/r/QKx6a8?source=guides-nav" 
+        target="_blank" 
+        rel="noopener"
+      >
+        Get Help
+      </a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <div class="eyebrow">Setup guides</div>
+
+        <h1>Simple website setup guides for business owners.</h1>
+
+        <p>
+          Learn the basics of domains, hosting, business email, payments, and launching
+          your website online.
+        </p>
+
+        <div class="buttons">
+          <a href="#guides" class="button-primary">View Guides</a>
+          <a 
+            href="https://tally.so/r/QKx6a8?source=guides-hero" 
+            class="button-secondary" 
+            target="_blank" 
+            rel="noopener"
+          >
+            Request Setup Help
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section id="guides" class="section">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <h2>Choose a guide</h2>
+          </div>
+          <p>
+            These quick guides help explain the main pieces needed to launch a real business website.
+          </p>
+        </div>
+
+        <div class="guide-grid">
+          <a href="#domain" class="guide-card">
+            <div class="guide-icon">01</div>
+            <h3>Domain Setup</h3>
+            <p>Learn how to pick and connect your website name.</p>
+          </a>
+
+          <a href="#hosting" class="guide-card">
+            <div class="guide-icon">02</div>
+            <h3>Hosting Setup</h3>
+            <p>Understand where your website lives online.</p>
+          </a>
+
+          <a href="#email" class="guide-card">
+            <div class="guide-icon">03</div>
+            <h3>Business Email</h3>
+            <p>Set up a professional email address for your brand.</p>
+          </a>
+
+          <a href="#payments" class="guide-card">
+            <div class="guide-icon">04</div>
+            <h3>Payments</h3>
+            <p>Prepare for deposits, invoices, and online payments.</p>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-light">
+      <div class="container">
+        <div id="domain" class="guide-section">
+          <h2>Domain setup</h2>
+          <p>
+            Your domain is your website address, like yourbusiness.com. It should be short,
+            easy to spell, and close to your business name.
+          </p>
+
+          <div class="steps">
+            <div class="step">
+              <div class="step-number">1</div>
+              <div>
+                <h3>Choose your website name</h3>
+                <p>Pick a name that matches your business and is easy for customers to remember.</p>
+              </div>
+            </div>
+
+            <div class="step">
+              <div class="step-number">2</div>
+              <div>
+                <h3>Buy the domain</h3>
+                <p>You can buy domains from providers like Namecheap, GoDaddy, Cloudflare, or Google-related domain partners.</p>
+              </div>
+            </div>
+
+            <div class="step">
+              <div class="step-number">3</div>
+              <div>
+                <h3>Connect it to your website</h3>
+                <p>Your domain gets connected to your hosting provider using DNS records.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="note">
+            Tip: Avoid long domains, hyphens, confusing spelling, and names that are hard to say out loud.
+          </div>
+        </div>
+
+        <div id="hosting" class="guide-section">
+          <h2>Hosting setup</h2>
+          <p>
+            Hosting is where your website files are stored so people can visit your site online.
+            For MintLaunchKit templates, simple static hosting is enough to start.
+          </p>
+
+          <div class="steps">
+            <div class="step">
+              <div class="step-number">1</div>
+              <div>
+                <h3>Pick a hosting platform</h3>
+                <p>For simple websites, Vercel is a good starting point because it connects easily to GitHub.</p>
+              </div>
+            </div>
+
+            <div class="step">
+              <div class="step-number">2</div>
+              <div>
+                <h3>Connect your GitHub repository</h3>
+                <p>Your website files live in GitHub, and your host automatically updates the site when you commit changes.</p>
+              </div>
+            </div>
+
+            <div class="step">
+              <div class="step-number">3</div>
+              <div>
+                <h3>Add your custom domain</h3>
+                <p>Once the site is live, connect your domain so customers can visit your real website address.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="note">
+            Tip: Start simple. You do not need a complicated backend until you add dashboards, logins, payments, or customer accounts.
+          </div>
+        </div>
+
+        <div id="email" class="guide-section">
+          <h2>Business email setup</h2>
+          <p>
+            A business email makes your brand look more professional. Instead of using a personal email,
+            you can use something like contact@yourbusiness.com.
+          </p>
+
+          <div class="steps">
+            <div class="step">
+              <div class="step-number">1</div>
+              <div>
+                <h3>Choose your email address</h3>
+                <p>Common choices are info@, contact@, hello@, support@, or your name at your domain.</p>
+              </div>
+            </div>
+
+            <div class="step">
+              <div class="step-number">2</div>
+              <div>
+                <h3>Pick an email provider</h3>
+                <p>Popular options include Google Workspace, Microsoft 365, Zoho Mail, or email forwarding.</p>
+              </div>
+            </div>
+
+            <div class="step">
+              <div class="step-number">3</div>
+              <div>
+                <h3>Connect email records</h3>
+                <p>Your domain will need email DNS records so messages can send and receive correctly.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="note">
+            Tip: For a new business, hello@yourdomain.com or contact@yourdomain.com is usually a clean choice.
+          </div>
+        </div>
+
+        <div id="payments" class="guide-section">
+          <h2>Payments setup</h2>
+          <p>
+            Payment setup lets your website collect deposits, invoices, booking fees, or full online payments.
+            This can be added after your basic site is live.
+          </p>
+
+          <div class="steps">
+            <div class="step">
+              <div class="step-number">1</div>
+              <div>
+                <h3>Decide what you want to collect</h3>
+                <p>Examples include deposits, consultation fees, invoices, subscriptions, or full product payments.</p>
+              </div>
+            </div>
+
+            <div class="step">
+              <div class="step-number">2</div>
+              <div>
+                <h3>Choose a payment tool</h3>
+                <p>Stripe, Square, PayPal, and invoice tools can all work depending on the business.</p>
+              </div>
+            </div>
+
+            <div class="step">
+              <div class="step-number">3</div>
+              <div>
+                <h3>Add payment links or checkout</h3>
+                <p>To start simple, use payment links. Later, you can add full checkout pages or customer dashboards.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="note">
+            Tip: Payment links are the easiest first step before building a full custom checkout system.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="cta">
+          <div>
+            <h2>Need help setting this up?</h2>
+            <p>
+              Request help with your domain, hosting, email, payments, or full website launch.
+            </p>
+          </div>
+
+          <a 
+            href="https://tally.so/r/QKx6a8?source=guides-bottom-cta" 
+            class="button-primary" 
+            target="_blank" 
+            rel="noopener"
+          >
+            Request Setup Help
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-content">
+      <p>© 2026 MintLaunchKit. All rights reserved.</p>
+      <p>Website setup guides for small businesses.</p>
+    </div>
+  </footer>
+</body>
+</html>
