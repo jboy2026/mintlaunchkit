@@ -67,7 +67,7 @@
 
     nav {
       display: flex;
-      gap: 28px;
+      gap: 22px;
       color: var(--gray);
       font-size: 0.95rem;
     }
@@ -291,10 +291,84 @@
       color: var(--mint-dark);
     }
 
-    .steps {
+    .pricing-section {
       background: var(--light);
       border-top: 1px solid var(--border);
       border-bottom: 1px solid var(--border);
+    }
+
+    .pricing-card {
+      position: relative;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      padding: 28px;
+      box-shadow: 0 16px 40px rgba(17, 24, 39, 0.06);
+    }
+
+    .pricing-card.featured {
+      border: 2px solid var(--mint);
+      box-shadow: 0 24px 60px rgba(46, 211, 162, 0.18);
+    }
+
+    .pricing-badge {
+      display: inline-block;
+      background: #ecfdf5;
+      color: #047857;
+      border: 1px solid #a7f3d0;
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 800;
+      margin-bottom: 14px;
+    }
+
+    .price {
+      font-size: 2.6rem;
+      line-height: 1;
+      letter-spacing: -0.06em;
+      font-weight: 900;
+      margin: 14px 0 10px;
+    }
+
+    .price-note {
+      color: var(--gray);
+      margin-bottom: 22px;
+    }
+
+    .pricing-card ul {
+      list-style: none;
+      display: grid;
+      gap: 12px;
+      margin: 22px 0;
+      color: var(--gray);
+    }
+
+    .pricing-card li::before {
+      content: "✓";
+      color: var(--mint-dark);
+      font-weight: 900;
+      margin-right: 8px;
+    }
+
+    .pricing-button {
+      display: inline-block;
+      width: 100%;
+      text-align: center;
+      background: var(--dark);
+      color: white;
+      padding: 13px 16px;
+      border-radius: 14px;
+      font-weight: 900;
+      margin-top: 8px;
+    }
+
+    .pricing-button:hover {
+      background: var(--mint-dark);
+    }
+
+    .steps {
+      background: white;
     }
 
     .step-number {
@@ -402,6 +476,7 @@
 
       <nav>
         <a href="#templates">Templates</a>
+        <a href="#pricing">Pricing</a>
         <a href="#how-it-works">How It Works</a>
         <a href="#guides">Setup Guides</a>
         <a href="#features">Custom Features</a>
@@ -507,6 +582,73 @@
               <a href="/templates/local-business/" class="demo-link">View Demo</a>
               <a href="#contact" class="details-link">Request This Site</a>
             </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="pricing" class="section pricing-section">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <h2>Simple launch pricing</h2>
+          </div>
+          <p>
+            Start with a clean template or get a fully customized version built
+            around your business.
+          </p>
+        </div>
+
+        <div class="grid">
+          <div class="pricing-card">
+            <span class="pricing-badge">Starter</span>
+            <h3>Starter Template</h3>
+            <div class="price">$249-$299</div>
+            <p class="price-note">Best for getting a clean website online fast.</p>
+
+            <ul>
+              <li>Template-based homepage</li>
+              <li>Mobile-friendly layout</li>
+              <li>Basic business sections</li>
+              <li>Contact form layout</li>
+              <li>Basic SEO structure</li>
+            </ul>
+
+            <a href="#contact" class="pricing-button">Request Starter</a>
+          </div>
+
+          <div class="pricing-card featured">
+            <span class="pricing-badge">Most Popular</span>
+            <h3>Customized Launch</h3>
+            <div class="price">$549-$649</div>
+            <p class="price-note">Best for businesses that want the site customized.</p>
+
+            <ul>
+              <li>Customized text and sections</li>
+              <li>Business colors and branding</li>
+              <li>Service or product details</li>
+              <li>Quote, booking, or contact setup</li>
+              <li>Launch guidance included</li>
+            </ul>
+
+            <a href="#contact" class="pricing-button">Request Custom Site</a>
+          </div>
+
+          <div class="pricing-card">
+            <span class="pricing-badge">Add-ons</span>
+            <h3>Custom Features</h3>
+            <div class="price">$50-$250+</div>
+            <p class="price-note">Add extra features as your business grows.</p>
+
+            <ul>
+              <li>Extra pages</li>
+              <li>Booking systems</li>
+              <li>Online payments</li>
+              <li>AI chatbot setup</li>
+              <li>SEO and Google setup help</li>
+            </ul>
+
+            <a href="#features" class="pricing-button">View Add-ons</a>
           </div>
         </div>
       </div>
