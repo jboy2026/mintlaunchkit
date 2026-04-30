@@ -1,2 +1,575 @@
-<h1>MintLaunchKit</h1>
-<p>Website marketplace coming soon.</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MintLaunchKit | Launch-Ready Websites</title>
+
+  <style>
+    :root {
+      --mint: #2ed3a2;
+      --mint-dark: #18a97d;
+      --dark: #111827;
+      --gray: #6b7280;
+      --light: #f9fafb;
+      --border: #e5e7eb;
+      --white: #ffffff;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--white);
+      color: var(--dark);
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .container {
+      width: min(1120px, 92%);
+      margin: 0 auto;
+    }
+
+    header {
+      border-bottom: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.9);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(12px);
+    }
+
+    .navbar {
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-size: 1.35rem;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+    }
+
+    .logo span {
+      color: var(--mint-dark);
+    }
+
+    nav {
+      display: flex;
+      gap: 28px;
+      color: var(--gray);
+      font-size: 0.95rem;
+    }
+
+    nav a:hover {
+      color: var(--dark);
+    }
+
+    .nav-button {
+      background: var(--dark);
+      color: white;
+      padding: 10px 18px;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 0.9rem;
+    }
+
+    .hero {
+      padding: 96px 0 72px;
+      background:
+        radial-gradient(circle at top left, rgba(46, 211, 162, 0.16), transparent 32%),
+        linear-gradient(180deg, #ffffff 0%, #f9fafb 100%);
+    }
+
+    .hero-content {
+      max-width: 760px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #ecfdf5;
+      color: #047857;
+      border: 1px solid #a7f3d0;
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      margin-bottom: 24px;
+    }
+
+    h1 {
+      font-size: clamp(2.8rem, 7vw, 5.6rem);
+      line-height: 0.98;
+      letter-spacing: -0.07em;
+      margin-bottom: 24px;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      color: var(--gray);
+      max-width: 650px;
+      margin-bottom: 34px;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .button-primary,
+    .button-secondary {
+      padding: 14px 22px;
+      border-radius: 14px;
+      font-weight: 800;
+      display: inline-block;
+    }
+
+    .button-primary {
+      background: var(--mint);
+      color: #052e22;
+    }
+
+    .button-primary:hover {
+      background: var(--mint-dark);
+      color: white;
+    }
+
+    .button-secondary {
+      border: 1px solid var(--border);
+      background: white;
+      color: var(--dark);
+    }
+
+    .section {
+      padding: 76px 0;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: 32px;
+    }
+
+    .section-header h2 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      letter-spacing: -0.05em;
+      line-height: 1.05;
+    }
+
+    .section-header p {
+      color: var(--gray);
+      max-width: 480px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 24px;
+      box-shadow: 0 16px 40px rgba(17, 24, 39, 0.06);
+    }
+
+    .template-preview {
+      height: 170px;
+      border-radius: 18px;
+      background:
+        linear-gradient(135deg, rgba(46, 211, 162, 0.24), rgba(17, 24, 39, 0.08)),
+        #f3f4f6;
+      border: 1px solid var(--border);
+      margin-bottom: 20px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .template-preview::before {
+      content: "";
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      width: 54%;
+      height: 12px;
+      background: white;
+      border-radius: 999px;
+      box-shadow:
+        0 28px 0 rgba(255, 255, 255, 0.9),
+        0 56px 0 rgba(255, 255, 255, 0.75);
+    }
+
+    .template-preview::after {
+      content: "";
+      position: absolute;
+      right: 20px;
+      bottom: 20px;
+      width: 84px;
+      height: 84px;
+      background: var(--mint);
+      border-radius: 24px;
+    }
+
+    .card h3 {
+      font-size: 1.2rem;
+      margin-bottom: 8px;
+      letter-spacing: -0.03em;
+    }
+
+    .card p {
+      color: var(--gray);
+      margin-bottom: 18px;
+    }
+
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .tag {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: #065f46;
+      background: #ecfdf5;
+      border: 1px solid #a7f3d0;
+      padding: 6px 10px;
+      border-radius: 999px;
+    }
+
+    .steps {
+      background: var(--light);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .step-number {
+      width: 42px;
+      height: 42px;
+      background: var(--dark);
+      color: white;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      font-weight: 800;
+      margin-bottom: 18px;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    .feature {
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 22px;
+      background: white;
+    }
+
+    .feature strong {
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    .feature span {
+      color: var(--gray);
+      font-size: 0.95rem;
+    }
+
+    .cta {
+      background: var(--dark);
+      color: white;
+      border-radius: 32px;
+      padding: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 28px;
+    }
+
+    .cta h2 {
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      letter-spacing: -0.05em;
+      line-height: 1.05;
+      margin-bottom: 14px;
+    }
+
+    .cta p {
+      color: #d1d5db;
+      max-width: 560px;
+    }
+
+    .cta .button-primary {
+      white-space: nowrap;
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 32px 0;
+      color: var(--gray);
+    }
+
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 860px) {
+      nav {
+        display: none;
+      }
+
+      .grid,
+      .features-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .section-header,
+      .cta {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .cta {
+        padding: 34px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="container navbar">
+      <a href="#" class="logo">Mint<span>Launch</span>Kit</a>
+
+      <nav>
+        <a href="#templates">Templates</a>
+        <a href="#how-it-works">How It Works</a>
+        <a href="#guides">Setup Guides</a>
+        <a href="#features">Custom Features</a>
+      </nav>
+
+      <a class="nav-button" href="#contact">Get Started</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-content">
+        <div class="eyebrow">Website marketplace coming soon</div>
+
+        <h1>Launch-ready websites for small businesses.</h1>
+
+        <p>
+          Browse professional website templates, customize the features you need,
+          and get your business online faster without starting from scratch.
+        </p>
+
+        <div class="buttons">
+          <a href="#templates" class="button-primary">Browse Templates</a>
+          <a href="#contact" class="button-secondary">Request Custom Website</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="templates" class="section">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <h2>Featured templates</h2>
+          </div>
+          <p>
+            Starting with simple, clean website templates built for real businesses.
+            More templates will be added as the marketplace grows.
+          </p>
+        </div>
+
+        <div class="grid">
+          <div class="card">
+            <div class="template-preview"></div>
+            <h3>Contractor Website</h3>
+            <p>A modern site for contractors, remodelers, roofers, and local service pros.</p>
+            <div class="tag-row">
+              <span class="tag">Quote Form</span>
+              <span class="tag">Gallery</span>
+              <span class="tag">Services</span>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="template-preview"></div>
+            <h3>Trucking Company Website</h3>
+            <p>A professional landing page for owner-operators and small trucking companies.</p>
+            <div class="tag-row">
+              <span class="tag">Contact Form</span>
+              <span class="tag">Fleet Info</span>
+              <span class="tag">About Page</span>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="template-preview"></div>
+            <h3>Local Business Website</h3>
+            <p>A clean business site for shops, barbers, restaurants, gyms, and service brands.</p>
+            <div class="tag-row">
+              <span class="tag">Booking</span>
+              <span class="tag">Menu</span>
+              <span class="tag">Location</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="how-it-works" class="section steps">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <h2>How it works</h2>
+          </div>
+          <p>
+            Choose a template, request the features you need, and launch a site
+            that fits your business.
+          </p>
+        </div>
+
+        <div class="grid">
+          <div class="card">
+            <div class="step-number">1</div>
+            <h3>Pick a template</h3>
+            <p>Choose a website style made for your type of business.</p>
+          </div>
+
+          <div class="card">
+            <div class="step-number">2</div>
+            <h3>Customize features</h3>
+            <p>Add forms, booking, payments, galleries, dashboards, or custom pages.</p>
+          </div>
+
+          <div class="card">
+            <div class="step-number">3</div>
+            <h3>Launch online</h3>
+            <p>Get help setting up your domain, hosting, email, and final website launch.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="guides" class="section">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <h2>Setup guides</h2>
+          </div>
+          <p>
+            Simple guides will help customers understand domains, hosting,
+            payments, edits, and website management.
+          </p>
+        </div>
+
+        <div class="features-grid">
+          <div class="feature">
+            <strong>Domain Setup</strong>
+            <span>Connect your website name.</span>
+          </div>
+
+          <div class="feature">
+            <strong>Hosting Setup</strong>
+            <span>Get the site live online.</span>
+          </div>
+
+          <div class="feature">
+            <strong>Email Setup</strong>
+            <span>Create business email accounts.</span>
+          </div>
+
+          <div class="feature">
+            <strong>Payments</strong>
+            <span>Connect Stripe later.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="features" class="section">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <h2>Custom features</h2>
+          </div>
+          <p>
+            Templates can grow into full websites with add-ons built around each business.
+          </p>
+        </div>
+
+        <div class="features-grid">
+          <div class="feature">
+            <strong>Booking Systems</strong>
+            <span>Let customers schedule appointments.</span>
+          </div>
+
+          <div class="feature">
+            <strong>Quote Forms</strong>
+            <span>Collect project details and leads.</span>
+          </div>
+
+          <div class="feature">
+            <strong>Online Payments</strong>
+            <span>Accept deposits and invoices.</span>
+          </div>
+
+          <div class="feature">
+            <strong>AI Chatbots</strong>
+            <span>Answer common customer questions.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="section">
+      <div class="container">
+        <div class="cta">
+          <div>
+            <h2>Ready to launch faster?</h2>
+            <p>
+              MintLaunchKit is being built as a marketplace for website templates,
+              setup guides, and custom website features.
+            </p>
+          </div>
+
+          <a href="mailto:hello@mintlaunchkit.com" class="button-primary">Contact Us</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-content">
+      <p>© 2026 MintLaunchKit. All rights reserved.</p>
+      <p>Launch-ready websites for small businesses.</p>
+    </div>
+  </footer>
+</body>
+</html>
